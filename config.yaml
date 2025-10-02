@@ -1,0 +1,105 @@
+# Configuration file for Retail Demand Forecasting
+
+# Data Configuration
+data:
+  input_path: "data/"
+  output_path: "outputs/"
+  plots_path: "plots/"
+  reports_path: "reports/"
+  
+  # File names
+  sales_data: "panel_train.csv"
+  weather_data: "weather_future.csv"
+  holiday_data: "calendar_future.csv"
+  promo_data: "promos_future.csv"
+  price_data: "price_plan_future.csv"
+  
+  # Target city for forecasting
+  target_city: "Jaipur_NewCity"
+  
+  # Forecasting horizon
+  forecast_horizon_weeks: 13
+
+# Model Configuration
+model:
+  # Primary model type
+  primary_model: "lightgbm"  # Options: lightgbm, xgboost, catboost, prophet, neural_network
+  
+  # Ensemble configuration
+  ensemble:
+    enabled: true
+    models: ["lightgbm", "xgboost", "catboost"]
+    weights: [0.4, 0.3, 0.3]
+  
+  # Cross-validation configuration
+  cv:
+    n_splits: 5
+    test_size: 0.2
+    gap_days: 7  # Gap between train and test to prevent data leakage
+  
+  # Hyperparameter tuning
+  hyperparameter_tuning:
+    enabled: true
+    n_trials: 100
+    cv_folds: 3
+
+# Feature Engineering
+features:
+  # Time features
+  time_features:
+    - "year"
+    - "month"
+    - "week_of_year"
+    - "day_of_week"
+    - "is_weekend"
+    - "quarter"
+  
+  # Lag features
+  lags:
+    enabled: true
+    periods: [1, 2, 3, 4, 7, 14, 21, 28]
+  
+  # Rolling window features
+  rolling_windows:
+    enabled: true
+    windows: [7, 14, 28]
+    functions: ["mean", "std", "min", "max"]
+  
+  # External regressors
+  external_regressors:
+    - "price"
+    - "promo_discount"
+    - "temperature"
+    - "humidity"
+    - "precipitation"
+    - "is_holiday"
+    - "holiday_type"
+
+# Transfer Learning
+transfer_learning:
+  enabled: true
+  source_cities_weight: 0.7
+  target_city_weight: 0.3
+  similarity_threshold: 0.8
+
+# Prediction Intervals
+prediction_intervals:
+  enabled: true
+  confidence_levels: [0.8, 0.9, 0.95]
+  method: "quantile_regression"  # Options: quantile_regression, conformal_prediction
+
+# Explainability
+explainability:
+  enabled: true
+  methods: ["shap", "lime", "feature_importance"]
+  top_features: 20
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/forecasting.log"
+
+# Random seed for reproducibility
+random_seed: 42
+
