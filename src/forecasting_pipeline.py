@@ -1,8 +1,3 @@
-"""
-Main forecasting pipeline for retail demand forecasting.
-Orchestrates the entire forecasting process from data loading to output generation.
-"""
-
 import pandas as pd
 import numpy as np
 from typing import Dict, List, Optional, Tuple, Any
@@ -14,7 +9,6 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-# Import custom modules
 from .data_loader import DataLoader
 from .feature_engineering import FeatureEngineer
 from .models import TransferLearningModel, create_model
@@ -29,28 +23,23 @@ class ForecastingPipeline:
     """Main forecasting pipeline for retail demand forecasting."""
     
     def __init__(self, config_path: str = "config.yaml"):
-        """Initialize forecasting pipeline."""
-        # Load configuration
         with open(config_path, 'r') as file:
             self.config = yaml.safe_load(file)
-        
-        # Initialize components
+
         self.data_loader = DataLoader(config_path)
         self.feature_engineer = FeatureEngineer(self.config)
         self.validator = TimeSeriesValidator(self.config)
         self.model_selector = ModelSelectionValidator(self.config)
         self.prediction_intervals = PredictionIntervalGenerator(self.config)
         self.driver_attribution = DriverAttribution(self.config)
-        
-        # Pipeline state
+
         self.data = {}
         self.features = None
         self.model = None
         self.forecasts = {}
         self.validation_results = {}
         self.explainability_results = {}
-        
-        # Setup logging
+
         self._setup_logging()
         
         logger.info("Forecasting pipeline initialized successfully")
@@ -373,7 +362,6 @@ class ForecastingPipeline:
         logger.info(f"Explainability results saved to {explainability_path}")
     
     def run_full_pipeline(self) -> Dict[str, Any]:
-        """Run the complete forecasting pipeline."""
         logger.info("Starting full forecasting pipeline...")
         
         try:
@@ -416,10 +404,9 @@ class ForecastingPipeline:
 
 
 if __name__ == "__main__":
-    # Example usage
+
     pipeline = ForecastingPipeline()
-    
-    # Run full pipeline
+
     results = pipeline.run_full_pipeline()
     
     if results['status'] == 'success':
