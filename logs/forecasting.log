@@ -1,0 +1,222 @@
+2025-10-01 23:16:31,879 - __main__ - INFO - Starting Retail Demand Forecasting Pipeline
+2025-10-01 23:16:31,880 - __main__ - INFO - Configuration: config.yaml
+2025-10-01 23:16:31,880 - __main__ - INFO - Data path: data/
+2025-10-01 23:16:31,881 - __main__ - INFO - Output path: outputs/
+2025-10-01 23:16:31,894 - src.forecasting_pipeline - INFO - Forecasting pipeline initialized successfully
+2025-10-01 23:16:31,895 - src.forecasting_pipeline - INFO - Starting full forecasting pipeline...
+2025-10-01 23:16:31,895 - src.forecasting_pipeline - INFO - Loading data...
+2025-10-01 23:16:31,916 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:16:31,917 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:16:31,920 - src.data_loader - ERROR - Error loading sales data: Date column not found in sales data
+2025-10-01 23:16:31,920 - src.forecasting_pipeline - ERROR - Pipeline failed: Date column not found in sales data
+2025-10-01 23:16:31,921 - __main__ - ERROR - Pipeline failed: Date column not found in sales data
+2025-10-01 23:17:12,139 - __main__ - INFO - Starting Retail Demand Forecasting Pipeline
+2025-10-01 23:17:12,140 - __main__ - INFO - Configuration: config.yaml
+2025-10-01 23:17:12,140 - __main__ - INFO - Data path: data/
+2025-10-01 23:17:12,141 - __main__ - INFO - Output path: outputs/
+2025-10-01 23:17:12,150 - src.forecasting_pipeline - INFO - Forecasting pipeline initialized successfully
+2025-10-01 23:17:12,150 - src.forecasting_pipeline - INFO - Starting full forecasting pipeline...
+2025-10-01 23:17:12,151 - src.forecasting_pipeline - INFO - Loading data...
+2025-10-01 23:17:12,160 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:12,160 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:12,183 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:17:12,187 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:17:12,192 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:17:12,197 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:17:12,202 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:12,202 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:12,212 - src.forecasting_pipeline - WARNING - Limited data available for target city Jaipur_NewCity
+2025-10-01 23:17:12,212 - src.forecasting_pipeline - INFO - Data loaded successfully. Quality score: 0.07
+2025-10-01 23:17:12,213 - src.forecasting_pipeline - INFO - Engineering features...
+2025-10-01 23:17:12,214 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:17:12,233 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:17:12,248 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:17:12,258 - src.forecasting_pipeline - ERROR - Pipeline failed: incompatible index of inserted column with frame index
+2025-10-01 23:17:12,258 - __main__ - ERROR - Pipeline failed: incompatible index of inserted column with frame index
+2025-10-01 23:17:42,628 - __main__ - INFO - Starting Retail Demand Forecasting Pipeline
+2025-10-01 23:17:42,628 - __main__ - INFO - Configuration: config.yaml
+2025-10-01 23:17:42,629 - __main__ - INFO - Data path: data/
+2025-10-01 23:17:42,629 - __main__ - INFO - Output path: outputs/
+2025-10-01 23:17:42,639 - src.forecasting_pipeline - INFO - Forecasting pipeline initialized successfully
+2025-10-01 23:17:42,640 - src.forecasting_pipeline - INFO - Starting full forecasting pipeline...
+2025-10-01 23:17:42,640 - src.forecasting_pipeline - INFO - Loading data...
+2025-10-01 23:17:42,647 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:42,648 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:42,659 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:17:42,664 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:17:42,667 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:17:42,671 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:17:42,676 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:42,676 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:42,682 - src.forecasting_pipeline - WARNING - Limited data available for target city Jaipur_NewCity
+2025-10-01 23:17:42,683 - src.forecasting_pipeline - INFO - Data loaded successfully. Quality score: 0.07
+2025-10-01 23:17:42,683 - src.forecasting_pipeline - INFO - Engineering features...
+2025-10-01 23:17:42,684 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:17:42,697 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:17:42,712 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:17:42,766 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:17:42,775 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:17:42,809 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:17:42,946 - src.feature_engineering - INFO - Feature engineering completed. Total features: 124
+2025-10-01 23:17:42,947 - src.feature_engineering - INFO - Feature columns: ['week_start', 'market', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'holiday_type', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:17:42,948 - src.forecasting_pipeline - INFO - Feature engineering completed. Shape: (3246, 128)
+2025-10-01 23:17:42,948 - src.forecasting_pipeline - INFO - Training transfer learning model...
+2025-10-01 23:17:42,948 - src.forecasting_pipeline - INFO - Preparing training data for transfer learning...
+2025-10-01 23:17:42,960 - src.forecasting_pipeline - INFO - Source data: (3210, 124), Target data: (36, 124)
+2025-10-01 23:17:42,960 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:17:42,966 - src.forecasting_pipeline - ERROR - Pipeline failed: pandas dtypes must be int, float or bool.
+Fields with bad pandas dtypes: week_start: object, market: object, holiday_type: object
+2025-10-01 23:17:42,966 - __main__ - ERROR - Pipeline failed: pandas dtypes must be int, float or bool.
+Fields with bad pandas dtypes: week_start: object, market: object, holiday_type: object
+2025-10-01 23:17:56,914 - __main__ - INFO - Starting Retail Demand Forecasting Pipeline
+2025-10-01 23:17:56,914 - __main__ - INFO - Configuration: config.yaml
+2025-10-01 23:17:56,914 - __main__ - INFO - Data path: data/
+2025-10-01 23:17:56,915 - __main__ - INFO - Output path: outputs/
+2025-10-01 23:17:56,926 - src.forecasting_pipeline - INFO - Forecasting pipeline initialized successfully
+2025-10-01 23:17:56,926 - src.forecasting_pipeline - INFO - Starting full forecasting pipeline...
+2025-10-01 23:17:56,926 - src.forecasting_pipeline - INFO - Loading data...
+2025-10-01 23:17:56,935 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:56,936 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:56,946 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:17:56,951 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:17:56,954 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:17:56,957 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:17:56,962 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:17:56,963 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:17:56,970 - src.forecasting_pipeline - WARNING - Limited data available for target city Jaipur_NewCity
+2025-10-01 23:17:56,971 - src.forecasting_pipeline - INFO - Data loaded successfully. Quality score: 0.07
+2025-10-01 23:17:56,971 - src.forecasting_pipeline - INFO - Engineering features...
+2025-10-01 23:17:56,972 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:17:56,988 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:17:57,001 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:17:57,042 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:17:57,050 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:17:57,065 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:17:57,202 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:17:57,203 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:17:57,204 - src.forecasting_pipeline - INFO - Feature engineering completed. Shape: (3246, 125)
+2025-10-01 23:17:57,204 - src.forecasting_pipeline - INFO - Training transfer learning model...
+2025-10-01 23:17:57,204 - src.forecasting_pipeline - INFO - Preparing training data for transfer learning...
+2025-10-01 23:17:57,210 - src.forecasting_pipeline - INFO - Source data: (3210, 121), Target data: (36, 121)
+2025-10-01 23:17:57,211 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:18:01,329 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:18:01,329 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:18:01,331 - src.forecasting_pipeline - ERROR - Pipeline failed: DataFrame.dtypes for data must be int, float, bool or category. When categorical type is supplied, The experimental DMatrix parameter`enable_categorical` must be set to `True`.  Invalid columns:week_of_year: UInt32
+2025-10-01 23:18:01,331 - __main__ - ERROR - Pipeline failed: DataFrame.dtypes for data must be int, float, bool or category. When categorical type is supplied, The experimental DMatrix parameter`enable_categorical` must be set to `True`.  Invalid columns:week_of_year: UInt32
+2025-10-01 23:18:15,980 - __main__ - INFO - Starting Retail Demand Forecasting Pipeline
+2025-10-01 23:18:15,980 - __main__ - INFO - Configuration: config.yaml
+2025-10-01 23:18:15,981 - __main__ - INFO - Data path: data/
+2025-10-01 23:18:15,981 - __main__ - INFO - Output path: outputs/
+2025-10-01 23:18:15,992 - src.forecasting_pipeline - INFO - Forecasting pipeline initialized successfully
+2025-10-01 23:18:15,992 - src.forecasting_pipeline - INFO - Starting full forecasting pipeline...
+2025-10-01 23:18:15,992 - src.forecasting_pipeline - INFO - Loading data...
+2025-10-01 23:18:15,999 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:18:16,000 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:18:16,012 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:18:16,016 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:18:16,019 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:18:16,023 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:18:16,029 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:18:16,029 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:18:16,036 - src.forecasting_pipeline - WARNING - Limited data available for target city Jaipur_NewCity
+2025-10-01 23:18:16,036 - src.forecasting_pipeline - INFO - Data loaded successfully. Quality score: 0.07
+2025-10-01 23:18:16,036 - src.forecasting_pipeline - INFO - Engineering features...
+2025-10-01 23:18:16,037 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:18:16,051 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:18:16,063 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:18:16,107 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:18:16,113 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:18:16,133 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:18:16,294 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:18:16,294 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:18:16,295 - src.forecasting_pipeline - INFO - Feature engineering completed. Shape: (3246, 125)
+2025-10-01 23:18:16,295 - src.forecasting_pipeline - INFO - Training transfer learning model...
+2025-10-01 23:18:16,296 - src.forecasting_pipeline - INFO - Preparing training data for transfer learning...
+2025-10-01 23:18:16,312 - src.forecasting_pipeline - INFO - Source data: (3210, 121), Target data: (36, 121)
+2025-10-01 23:18:16,313 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:18:20,924 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:18:20,925 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:18:28,689 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:18:28,689 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:18:37,263 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:18:37,263 - src.models - INFO - Fitted catboost model
+2025-10-01 23:18:37,263 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:18:37,264 - src.models - INFO - Source model fitted successfully
+2025-10-01 23:18:37,264 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-01 23:18:37,425 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:18:37,426 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:18:38,830 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:18:38,831 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:18:41,378 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:18:41,378 - src.models - INFO - Fitted catboost model
+2025-10-01 23:18:41,379 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:18:41,379 - src.models - INFO - Target model fitted with transfer learning
+2025-10-01 23:18:41,380 - src.forecasting_pipeline - INFO - Transfer learning model trained successfully
+2025-10-01 23:18:41,380 - src.forecasting_pipeline - INFO - Validating model...
+2025-10-01 23:18:41,380 - src.forecasting_pipeline - INFO - Preparing training data for transfer learning...
+2025-10-01 23:18:41,394 - src.forecasting_pipeline - INFO - Source data: (3210, 121), Target data: (36, 121)
+2025-10-01 23:18:41,402 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S001: 6 samples
+2025-10-01 23:18:41,405 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S002: 6 samples
+2025-10-01 23:18:41,408 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S003: 6 samples
+2025-10-01 23:18:41,412 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S004: 6 samples
+2025-10-01 23:18:41,416 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S005: 6 samples
+2025-10-01 23:18:41,420 - src.validation - WARNING - Insufficient data for Jaipur_NewCity-S006: 6 samples
+2025-10-01 23:18:41,422 - src.forecasting_pipeline - ERROR - Pipeline failed: zero-size array to reduction operation minimum which has no identity
+2025-10-01 23:18:41,423 - __main__ - ERROR - Pipeline failed: zero-size array to reduction operation minimum which has no identity
+2025-10-01 23:19:19,517 - __main__ - INFO - Starting Cold-Start Demand Forecasting
+2025-10-01 23:19:19,518 - __main__ - INFO - Loading data...
+2025-10-01 23:19:19,532 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:19:19,533 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:19:19,542 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:19:19,546 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:19:19,550 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:19:19,553 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:19:19,553 - __main__ - INFO - Engineering features...
+2025-10-01 23:19:19,553 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:19:19,567 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:19:19,580 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:19:19,624 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:19:19,631 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:19:19,645 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:19:19,806 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:19:19,807 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:19:19,808 - __main__ - INFO - Training transfer learning model...
+2025-10-01 23:19:19,808 - __main__ - ERROR - Forecasting failed: 'TransferLearningModel' object has no attribute 'fit'
+2025-10-01 23:19:37,363 - __main__ - INFO - Starting Cold-Start Demand Forecasting
+2025-10-01 23:19:37,364 - __main__ - INFO - Loading data...
+2025-10-01 23:19:37,376 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:19:37,376 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:19:37,385 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:19:37,392 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:19:37,397 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:19:37,401 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:19:37,401 - __main__ - INFO - Engineering features...
+2025-10-01 23:19:37,402 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:19:37,426 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:19:37,449 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:19:37,492 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:19:37,498 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:19:37,512 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:19:37,667 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:19:37,668 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:19:37,669 - __main__ - INFO - Training transfer learning model...
+2025-10-01 23:19:37,679 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:19:41,254 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:19:41,255 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:19:48,817 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:19:48,817 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:19:55,663 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:19:55,664 - src.models - INFO - Fitted catboost model
+2025-10-01 23:19:55,664 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:19:55,665 - src.models - INFO - Source model fitted successfully
+2025-10-01 23:19:55,665 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-01 23:19:55,817 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:19:55,818 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:19:57,116 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:19:57,117 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:19:59,615 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:19:59,616 - src.models - INFO - Fitted catboost model
+2025-10-01 23:19:59,616 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:19:59,616 - src.models - INFO - Target model fitted with transfer learning
+2025-10-01 23:19:59,617 - __main__ - INFO - Generating forecasts...
+2025-10-01 23:19:59,927 - __main__ - INFO - Forecasts saved to outputs/forecasts.csv

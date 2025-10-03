@@ -1,0 +1,200 @@
+2025-10-01 23:26:06,331 - __main__ - INFO - Configuration loaded successfully
+2025-10-01 23:26:06,333 - __main__ - INFO - Directories created successfully
+2025-10-01 23:26:06,334 - __main__ - INFO - Starting Enhanced Cold-Start Demand Forecasting Pipeline
+2025-10-01 23:26:06,334 - __main__ - INFO - Loading and preparing data...
+2025-10-01 23:26:06,358 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:26:06,359 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:26:06,374 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:26:06,380 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:26:06,384 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:26:06,390 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:26:06,391 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:26:06,415 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:26:06,432 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:26:06,483 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:26:06,493 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:26:06,515 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:26:06,735 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:26:06,736 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:26:06,736 - __main__ - INFO - Data loaded successfully. Shape: (3246, 125)
+2025-10-01 23:26:06,737 - __main__ - INFO - Training transfer learning model...
+2025-10-01 23:26:06,748 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:26:10,796 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:26:10,796 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:26:18,161 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:26:18,161 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:26:25,011 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:26:25,011 - src.models - INFO - Fitted catboost model
+2025-10-01 23:26:25,012 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:26:25,012 - src.models - INFO - Source model fitted successfully
+2025-10-01 23:26:25,012 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-01 23:26:25,174 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:26:25,174 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:26:26,501 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:26:26,501 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:26:28,791 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:26:28,792 - src.models - INFO - Fitted catboost model
+2025-10-01 23:26:28,792 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:26:28,792 - src.models - INFO - Target model fitted with transfer learning
+2025-10-01 23:26:28,793 - __main__ - INFO - Transfer learning model trained with target data
+2025-10-01 23:26:28,794 - __main__ - INFO - Generating forecasts...
+2025-10-01 23:26:29,114 - __main__ - INFO - Forecasts saved to outputs/forecasts.csv
+2025-10-01 23:26:29,115 - __main__ - INFO - Creating data analysis plots...
+2025-10-01 23:26:32,781 - __main__ - INFO - Creating interactive dashboard...
+2025-10-01 23:26:33,211 - __main__ - ERROR - Pipeline failed: Trace type 'pie' is not compatible with subplot type 'xy'
+at grid position (2, 2)
+
+See the docstring for the specs argument to plotly.subplots.make_subplots
+for more information on subplot types
+2025-10-01 23:26:46,953 - __main__ - INFO - Configuration loaded successfully
+2025-10-01 23:26:46,954 - __main__ - INFO - Directories created successfully
+2025-10-01 23:26:46,955 - __main__ - INFO - Starting Enhanced Cold-Start Demand Forecasting Pipeline
+2025-10-01 23:26:46,955 - __main__ - INFO - Loading and preparing data...
+2025-10-01 23:26:46,968 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:26:46,968 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:26:46,978 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:26:46,982 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:26:46,985 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:26:46,988 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:26:46,988 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:26:47,004 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:26:47,019 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:26:47,060 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:26:47,066 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:26:47,083 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:26:47,237 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:26:47,238 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:26:47,239 - __main__ - INFO - Data loaded successfully. Shape: (3246, 125)
+2025-10-01 23:26:47,239 - __main__ - INFO - Training transfer learning model...
+2025-10-01 23:26:47,250 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:26:50,623 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:26:50,624 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:26:59,109 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:26:59,109 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:27:06,670 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:27:06,670 - src.models - INFO - Fitted catboost model
+2025-10-01 23:27:06,671 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:27:06,671 - src.models - INFO - Source model fitted successfully
+2025-10-01 23:27:06,671 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-01 23:27:06,792 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:27:06,793 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:27:08,003 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:27:08,004 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:27:10,534 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:27:10,535 - src.models - INFO - Fitted catboost model
+2025-10-01 23:27:10,535 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:27:10,535 - src.models - INFO - Target model fitted with transfer learning
+2025-10-01 23:27:10,536 - __main__ - INFO - Transfer learning model trained with target data
+2025-10-01 23:27:10,537 - __main__ - INFO - Generating forecasts...
+2025-10-01 23:27:10,776 - __main__ - INFO - Forecasts saved to outputs/forecasts.csv
+2025-10-01 23:27:10,776 - __main__ - INFO - Creating data analysis plots...
+2025-10-01 23:27:12,986 - __main__ - INFO - Creating interactive dashboard...
+2025-10-01 23:27:13,112 - __main__ - ERROR - Pipeline failed: Trace type 'pie' is not compatible with subplot type 'xy'
+at grid position (2, 2)
+
+See the docstring for the specs argument to plotly.subplots.make_subplots
+for more information on subplot types
+2025-10-01 23:27:24,891 - __main__ - INFO - Configuration loaded successfully
+2025-10-01 23:27:24,892 - __main__ - INFO - Directories created successfully
+2025-10-01 23:27:24,892 - __main__ - INFO - Starting Enhanced Cold-Start Demand Forecasting Pipeline
+2025-10-01 23:27:24,892 - __main__ - INFO - Loading and preparing data...
+2025-10-01 23:27:24,906 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-01 23:27:24,907 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-01 23:27:24,917 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-01 23:27:24,923 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-01 23:27:24,928 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-01 23:27:24,932 - src.data_loader - INFO - All data loaded successfully
+2025-10-01 23:27:24,932 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-01 23:27:24,947 - src.feature_engineering - INFO - Created 27 time features
+2025-10-01 23:27:24,960 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-01 23:27:25,008 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-01 23:27:25,013 - src.feature_engineering - INFO - Added holiday features
+2025-10-01 23:27:25,027 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-01 23:27:25,172 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-01 23:27:25,173 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-01 23:27:25,174 - __main__ - INFO - Data loaded successfully. Shape: (3246, 125)
+2025-10-01 23:27:25,174 - __main__ - INFO - Training transfer learning model...
+2025-10-01 23:27:25,189 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-01 23:27:28,468 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:27:28,469 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:27:36,860 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:27:36,860 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:27:44,390 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:27:44,390 - src.models - INFO - Fitted catboost model
+2025-10-01 23:27:44,391 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:27:44,391 - src.models - INFO - Source model fitted successfully
+2025-10-01 23:27:44,391 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-01 23:27:44,514 - src.models - INFO - LightGBM model fitted successfully
+2025-10-01 23:27:44,514 - src.models - INFO - Fitted lightgbm model
+2025-10-01 23:27:45,735 - src.models - INFO - XGBoost model fitted successfully
+2025-10-01 23:27:45,735 - src.models - INFO - Fitted xgboost model
+2025-10-01 23:27:48,198 - src.models - INFO - CatBoost model fitted successfully
+2025-10-01 23:27:48,198 - src.models - INFO - Fitted catboost model
+2025-10-01 23:27:48,199 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-01 23:27:48,199 - src.models - INFO - Target model fitted with transfer learning
+2025-10-01 23:27:48,199 - __main__ - INFO - Transfer learning model trained with target data
+2025-10-01 23:27:48,200 - __main__ - INFO - Generating forecasts...
+2025-10-01 23:27:48,580 - __main__ - INFO - Forecasts saved to outputs/forecasts.csv
+2025-10-01 23:27:48,581 - __main__ - INFO - Creating data analysis plots...
+2025-10-01 23:27:50,957 - __main__ - INFO - Creating interactive dashboard...
+2025-10-01 23:27:51,921 - __main__ - INFO - Interactive dashboard created successfully
+2025-10-01 23:27:51,921 - __main__ - INFO - Data analysis plots created successfully
+2025-10-01 23:27:51,922 - __main__ - INFO - Creating forecast visualizations...
+2025-10-01 23:27:53,802 - __main__ - INFO - Creating forecast dashboard...
+2025-10-01 23:27:53,888 - __main__ - INFO - Forecast dashboard created successfully
+2025-10-01 23:27:53,889 - __main__ - INFO - Forecast visualizations created successfully
+2025-10-01 23:27:53,889 - __main__ - INFO - Generating comprehensive report...
+2025-10-01 23:27:53,894 - __main__ - INFO - Comprehensive report generated successfully
+2025-10-01 23:27:53,901 - __main__ - INFO - Enhanced forecasting pipeline completed successfully!
+2025-10-02 21:31:31,187 - __main__ - INFO - Configuration loaded successfully
+2025-10-02 21:31:31,195 - __main__ - INFO - Directories created successfully
+2025-10-02 21:31:31,195 - __main__ - INFO - Starting Enhanced Cold-Start Demand Forecasting Pipeline
+2025-10-02 21:31:31,205 - __main__ - INFO - Loading and preparing data...
+2025-10-02 21:31:31,392 - src.data_loader - INFO - Loaded sales data: (3246, 9)
+2025-10-02 21:31:31,395 - src.data_loader - INFO - Columns: ['week_start', 'market', 'sku_id', 'units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm']
+2025-10-02 21:31:31,508 - src.data_loader - INFO - Loaded weather data: (78, 4)
+2025-10-02 21:31:31,574 - src.data_loader - INFO - Loaded holiday data: (13, 3)
+2025-10-02 21:31:31,638 - src.data_loader - INFO - Loaded promo data: (33, 5)
+2025-10-02 21:31:31,661 - src.data_loader - INFO - All data loaded successfully
+2025-10-02 21:31:31,663 - src.feature_engineering - INFO - Starting feature engineering...
+2025-10-02 21:31:31,770 - src.feature_engineering - INFO - Created 27 time features
+2025-10-02 21:31:31,872 - src.feature_engineering - INFO - Created 8 lag features
+2025-10-02 21:31:32,145 - src.feature_engineering - INFO - Created rolling features for windows: [7, 14, 28]
+2025-10-02 21:31:32,212 - src.feature_engineering - INFO - Added holiday features
+2025-10-02 21:31:32,373 - src.feature_engineering - INFO - Created cross-sectional features
+2025-10-02 21:31:33,806 - src.feature_engineering - INFO - Feature engineering completed. Total features: 121
+2025-10-02 21:31:33,808 - src.feature_engineering - INFO - Feature columns: ['units', 'price', 'promo_flag', 'holiday_flag', 'temp_c', 'rain_mm', 'year', 'month', 'month_sin', 'month_cos', 'week_of_year', 'week_sin', 'week_cos', 'day_of_week', 'day_sin', 'day_cos', 'is_weekend', 'quarter', 'quarter_sin', 'quarter_cos', 'days_since_start', 'is_month_start', 'is_month_end', 'is_quarter_start', 'is_quarter_end', 'units_sold_lag_1', 'units_sold_lag_2', 'units_sold_lag_3', 'units_sold_lag_4', 'units_sold_lag_7', 'units_sold_lag_14', 'units_sold_lag_21', 'units_sold_lag_28', 'units_sold_lag_1_ratio', 'units_sold_lag_7_ratio', 'units_sold_lag_14_ratio', 'units_sold_rolling_7_mean', 'units_sold_rolling_7_std', 'units_sold_rolling_7_min', 'units_sold_rolling_7_max', 'units_sold_rolling_14_mean', 'units_sold_rolling_14_std', 'units_sold_rolling_14_min', 'units_sold_rolling_14_max', 'units_sold_rolling_28_mean', 'units_sold_rolling_28_std', 'units_sold_rolling_28_min', 'units_sold_rolling_28_max', 'units_sold_vs_rolling_7_mean', 'units_sold_vs_rolling_14_mean', 'is_holiday', 'city_mean_sales', 'city_std_sales', 'city_total_sales', 'sku_mean_sales', 'sku_std_sales', 'sku_total_sales', 'city_sku_ratio', 'sku_city_ratio', 'city_encoded', 'sku_id_encoded', 'holiday_type_encoded', 'units_scaled', 'price_scaled', 'promo_flag_scaled', 'holiday_flag_scaled', 'temp_c_scaled', 'rain_mm_scaled', 'year_scaled', 'month_scaled', 'month_sin_scaled', 'month_cos_scaled', 'week_of_year_scaled', 'week_sin_scaled', 'week_cos_scaled', 'day_of_week_scaled', 'day_sin_scaled', 'day_cos_scaled', 'is_weekend_scaled', 'quarter_scaled', 'quarter_sin_scaled', 'quarter_cos_scaled', 'days_since_start_scaled', 'is_month_start_scaled', 'is_month_end_scaled', 'is_quarter_start_scaled', 'is_quarter_end_scaled', 'units_sold_lag_1_scaled', 'units_sold_lag_2_scaled', 'units_sold_lag_3_scaled', 'units_sold_lag_4_scaled', 'units_sold_lag_7_scaled', 'units_sold_lag_14_scaled', 'units_sold_lag_21_scaled', 'units_sold_lag_28_scaled', 'units_sold_lag_1_ratio_scaled', 'units_sold_lag_7_ratio_scaled', 'units_sold_lag_14_ratio_scaled', 'units_sold_rolling_7_mean_scaled', 'units_sold_rolling_7_std_scaled', 'units_sold_rolling_7_min_scaled', 'units_sold_rolling_7_max_scaled', 'units_sold_rolling_14_mean_scaled', 'units_sold_rolling_14_std_scaled', 'units_sold_rolling_14_min_scaled', 'units_sold_rolling_14_max_scaled', 'units_sold_rolling_28_mean_scaled', 'units_sold_rolling_28_std_scaled', 'units_sold_rolling_28_min_scaled', 'units_sold_rolling_28_max_scaled', 'units_sold_vs_rolling_7_mean_scaled', 'units_sold_vs_rolling_14_mean_scaled', 'is_holiday_scaled', 'city_mean_sales_scaled', 'city_std_sales_scaled', 'city_total_sales_scaled', 'sku_mean_sales_scaled', 'sku_std_sales_scaled', 'sku_total_sales_scaled', 'city_sku_ratio_scaled', 'sku_city_ratio_scaled']
+2025-10-02 21:31:33,811 - __main__ - INFO - Data loaded successfully. Shape: (3246, 125)
+2025-10-02 21:31:33,812 - __main__ - INFO - Training transfer learning model...
+2025-10-02 21:31:33,940 - src.models - INFO - Fitting source model on all cities except target...
+2025-10-02 21:32:01,851 - src.models - INFO - LightGBM model fitted successfully
+2025-10-02 21:32:01,851 - src.models - INFO - Fitted lightgbm model
+2025-10-02 21:32:11,453 - src.models - INFO - XGBoost model fitted successfully
+2025-10-02 21:32:11,458 - src.models - INFO - Fitted xgboost model
+2025-10-02 21:32:44,420 - src.models - INFO - CatBoost model fitted successfully
+2025-10-02 21:32:44,422 - src.models - INFO - Fitted catboost model
+2025-10-02 21:32:44,423 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-02 21:32:44,424 - src.models - INFO - Source model fitted successfully
+2025-10-02 21:32:44,424 - src.models - INFO - Fitting target model with transfer learning...
+2025-10-02 21:32:44,604 - src.models - INFO - LightGBM model fitted successfully
+2025-10-02 21:32:44,604 - src.models - INFO - Fitted lightgbm model
+2025-10-02 21:32:46,677 - src.models - INFO - XGBoost model fitted successfully
+2025-10-02 21:32:46,677 - src.models - INFO - Fitted xgboost model
+2025-10-02 21:32:51,442 - src.models - INFO - CatBoost model fitted successfully
+2025-10-02 21:32:51,442 - src.models - INFO - Fitted catboost model
+2025-10-02 21:32:51,443 - src.models - INFO - Ensemble model fitted with 3 models
+2025-10-02 21:32:51,443 - src.models - INFO - Target model fitted with transfer learning
+2025-10-02 21:32:51,445 - __main__ - INFO - Transfer learning model trained with target data
+2025-10-02 21:32:51,447 - __main__ - INFO - Generating forecasts...
+2025-10-02 21:32:51,806 - __main__ - INFO - Forecasts saved to outputs/forecasts.csv
+2025-10-02 21:32:51,808 - __main__ - INFO - Creating data analysis plots...
+2025-10-02 21:32:56,290 - __main__ - INFO - Creating interactive dashboard...
+2025-10-02 21:33:01,815 - __main__ - INFO - Interactive dashboard created successfully
+2025-10-02 21:33:01,817 - __main__ - INFO - Data analysis plots created successfully
+2025-10-02 21:33:01,817 - __main__ - INFO - Creating forecast visualizations...
+2025-10-02 21:33:04,120 - __main__ - INFO - Creating forecast dashboard...
+2025-10-02 21:33:04,350 - __main__ - INFO - Forecast dashboard created successfully
+2025-10-02 21:33:04,350 - __main__ - INFO - Forecast visualizations created successfully
+2025-10-02 21:33:04,355 - __main__ - INFO - Generating comprehensive report...
+2025-10-02 21:33:04,355 - __main__ - INFO - Comprehensive report generated successfully
+2025-10-02 21:33:04,378 - __main__ - INFO - Enhanced forecasting pipeline completed successfully!
