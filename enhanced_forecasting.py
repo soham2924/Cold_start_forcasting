@@ -1,14 +1,3 @@
-"""
-My Retail Demand Forecasting Tool for New Stores
-Created after our Pune disaster - this should help us avoid another inventory nightmare!
-
-This script forecasts 13 weeks of demand for our new Jaipur store using what we've learned
-from our existing locations. I've added tons of visualizations to help the business team
-actually understand what's going on.
-
-Note to self: Still need to improve the weather feature impact - seems too sensitive to rain.
-"""
-
 import sys
 import logging
 import pandas as pd
@@ -25,14 +14,12 @@ from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
 
-# Add src to path
 sys.path.append(str(Path(__file__).parent / 'src'))
 
 from src.data_loader import DataLoader
 from src.feature_engineering import FeatureEngineer
 from src.models import TransferLearningModel
 
-# Setup enhanced logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -45,17 +32,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class EnhancedForecastingPipeline:
-    """My attempt at building a better forecasting pipeline after the Pune fiasco.
-    
-    This is version 3.2 - had to rebuild after my laptop crashed and lost v2.
-    The main improvements are better visualizations and more robust feature engineering.
-    """
     
     def __init__(self, config_path='config.yaml'):
-        """Get everything ready to run.
-        
-        I'm using a config file now after spending way too much time hardcoding parameters.
-        """
         self.config_path = config_path
         self.load_config()
         self.setup_directories()
@@ -65,27 +43,22 @@ class EnhancedForecastingPipeline:
         self.forecasts = None
         
     def load_config(self):
-        """Load configuration from YAML file."""
         with open(self.config_path, 'r') as file:
             self.config = yaml.safe_load(file)
         logger.info("Configuration loaded successfully")
     
     def setup_directories(self):
-        """Create necessary directories."""
         directories = ['outputs', 'plots', 'reports', 'logs', 'dashboards']
         for directory in directories:
             Path(directory).mkdir(exist_ok=True)
         logger.info("Directories created successfully")
     
     def load_and_prepare_data(self):
-        """Load and prepare all data sources."""
         logger.info("Loading and preparing data...")
-        
-        # Load data
+
         data_loader = DataLoader(self.config_path)
         self.data = data_loader.load_all_data()
-        
-        # Engineer features
+
         feature_engineer = FeatureEngineer(self.config)
         self.data_with_features = feature_engineer.engineer_all_features(
             self.data['sales'], self.data
@@ -95,16 +68,12 @@ class EnhancedForecastingPipeline:
         return self.data_with_features
     
     def train_model(self):
-        """Train the transfer learning model."""
         logger.info("Training transfer learning model...")
-        
         target_city = 'Jaipur_NewCity'
-        
-        # Split data into source and target
+
         source_data = self.data_with_features[self.data_with_features['city'] != target_city]
         target_data = self.data_with_features[self.data_with_features['city'] == target_city]
-        
-        # Prepare features and target
+
         feature_columns = [col for col in self.data_with_features.columns 
                           if col not in ['date', 'city', 'sku_id', 'units_sold']]
         
@@ -112,8 +81,7 @@ class EnhancedForecastingPipeline:
         y_source = source_data['units_sold']
         X_target = target_data[feature_columns]
         y_target = target_data['units_sold']
-        
-        # Initialize and train model
+
         self.model = TransferLearningModel(self.config)
         self.model.fit_source_model(X_source, y_source)
         
@@ -126,54 +94,43 @@ class EnhancedForecastingPipeline:
         return self.model
     
     def generate_forecasts(self):
-        """Generate forecasts for the next 13 weeks."""
         logger.info("Generating forecasts...")
-        
-        # Get the last date in the data
+
         last_date = self.data_with_features['date'].max()
-        
-        # Create future dates (13 weeks)
+
         future_dates = pd.date_range(
             start=last_date + timedelta(weeks=1),
             periods=13,
             freq='W-MON'
         )
-        
-        # Get unique SKUs
+
         skus = self.data_with_features['sku_id'].unique()
-        
-        # Create forecast data for Jaipur_NewCity
+
         forecasts = []
         feature_columns = [col for col in self.data_with_features.columns 
                           if col not in ['date', 'city', 'sku_id', 'units_sold']]
         
         for date in future_dates:
             for sku in skus:
-                # Create a sample row for forecasting
                 jaipur_data = self.data_with_features[
                     (self.data_with_features['city'] == 'Jaipur_NewCity') & 
                     (self.data_with_features['sku_id'] == sku)
                 ]
                 
                 if len(jaipur_data) > 0:
-                    # Use the most recent row as template
                     base_row = jaipur_data.iloc[-1].copy()
                 else:
-                    # Use average from other cities as template
                     base_row = self.data_with_features[
                         self.data_with_features['sku_id'] == sku
                     ].iloc[-1].copy()
                     base_row['city'] = 'Jaipur_NewCity'
-                
-                # Update date and time features
+
                 base_row['date'] = date
                 base_row['year'] = date.year
                 base_row['month'] = date.month
                 base_row['week_of_year'] = date.isocalendar().week
                 base_row['day_of_week'] = date.dayofweek
                 base_row['quarter'] = date.quarter
-                
-                # Update cyclical features
                 base_row['month_sin'] = np.sin(2 * np.pi * date.month / 12)
                 base_row['month_cos'] = np.cos(2 * np.pi * date.month / 12)
                 base_row['week_sin'] = np.sin(2 * np.pi * date.isocalendar().week / 52)
@@ -184,43 +141,30 @@ class EnhancedForecastingPipeline:
                 base_row['quarter_cos'] = np.cos(2 * np.pi * date.quarter / 4)
                 
                 forecasts.append(base_row)
-        
-        # Convert to DataFrame
         forecast_df = pd.DataFrame(forecasts)
-        
-        # Prepare features for prediction
         X_forecast = forecast_df[feature_columns]
-        
-        # Generate predictions
+
         predictions = self.model.predict(X_forecast)
-        
-        # Create final forecast results
+
         self.forecasts = pd.DataFrame({
             'week_start': forecast_df['date'],
             'market': 'Jaipur_NewCity',
             'sku_id': forecast_df['sku_id'],
             'forecast_units': predictions
         })
-        
-        # Save forecasts
+
         self.forecasts.to_csv('outputs/forecasts.csv', index=False)
         logger.info(f"Forecasts saved to outputs/forecasts.csv")
         
         return self.forecasts
     
     def create_data_analysis_plots(self):
-        """Create comprehensive data analysis visualizations."""
         logger.info("Creating data analysis plots...")
-        
-        # Set style
+
         plt.style.use('seaborn-v0_8')
         sns.set_palette("husl")
-        
-        # 1. Historical Sales Trends by City
         fig, axes = plt.subplots(2, 2, figsize=(20, 15))
         fig.suptitle('Historical Sales Analysis', fontsize=16, fontweight='bold')
-        
-        # Sales by city over time
         city_sales = self.data_with_features.groupby(['city', 'date'])['units_sold'].sum().reset_index()
         for city in city_sales['city'].unique():
             city_data = city_sales[city_sales['city'] == city]
@@ -230,19 +174,16 @@ class EnhancedForecastingPipeline:
         axes[0, 0].set_ylabel('Total Units Sold')
         axes[0, 0].legend()
         axes[0, 0].tick_params(axis='x', rotation=45)
-        
-        # Sales by SKU
+
         sku_sales = self.data_with_features.groupby('sku_id')['units_sold'].sum().sort_values(ascending=True)
         axes[0, 1].barh(sku_sales.index, sku_sales.values)
         axes[0, 1].set_title('Total Sales by SKU')
         axes[0, 1].set_xlabel('Total Units Sold')
-        
-        # Sales distribution by city
+
         city_totals = self.data_with_features.groupby('city')['units_sold'].sum()
         axes[1, 0].pie(city_totals.values, labels=city_totals.index, autopct='%1.1f%%')
         axes[1, 0].set_title('Sales Distribution by City')
-        
-        # Monthly sales pattern
+
         monthly_sales = self.data_with_features.groupby('month')['units_sold'].sum()
         axes[1, 1].plot(monthly_sales.index, monthly_sales.values, marker='o', linewidth=2, markersize=8)
         axes[1, 1].set_title('Monthly Sales Pattern')
@@ -253,17 +194,14 @@ class EnhancedForecastingPipeline:
         plt.tight_layout()
         plt.savefig('plots/data_analysis.png', dpi=300, bbox_inches='tight')
         plt.close()
-        
-        # 2. Interactive Plotly Dashboard
+
         self.create_interactive_dashboard()
         
         logger.info("Data analysis plots created successfully")
     
     def create_interactive_dashboard(self):
-        """Create interactive Plotly dashboard."""
         logger.info("Creating interactive dashboard...")
-        
-        # Create subplots with proper specs for pie chart
+
         fig = make_subplots(
             rows=3, cols=2,
             subplot_titles=('Sales Trends by City', 'SKU Performance', 
@@ -273,8 +211,7 @@ class EnhancedForecastingPipeline:
                    [{"secondary_y": False}, {"type": "pie"}],
                    [{"secondary_y": False}, {"secondary_y": False}]]
         )
-        
-        # 1. Sales trends by city
+
         city_sales = self.data_with_features.groupby(['city', 'date'])['units_sold'].sum().reset_index()
         for city in city_sales['city'].unique():
             city_data = city_sales[city_sales['city'] == city]
@@ -283,67 +220,54 @@ class EnhancedForecastingPipeline:
                           name=city, mode='lines+markers'),
                 row=1, col=1
             )
-        
-        # 2. SKU performance
         sku_sales = self.data_with_features.groupby('sku_id')['units_sold'].sum().sort_values(ascending=True)
         fig.add_trace(
             go.Bar(x=sku_sales.values, y=sku_sales.index, orientation='h', name='SKU Sales'),
             row=1, col=2
         )
-        
-        # 3. Monthly patterns
         monthly_sales = self.data_with_features.groupby('month')['units_sold'].sum()
         fig.add_trace(
             go.Scatter(x=monthly_sales.index, y=monthly_sales.values, 
                       mode='lines+markers', name='Monthly Pattern'),
             row=2, col=1
         )
-        
-        # 4. City comparison
+
         city_totals = self.data_with_features.groupby('city')['units_sold'].sum()
         fig.add_trace(
             go.Pie(labels=city_totals.index, values=city_totals.values, name="City Distribution"),
             row=2, col=2
         )
-        
-        # 5. Forecast preview (if available)
+
         if self.forecasts is not None:
             forecast_summary = self.forecasts.groupby('sku_id')['forecast_units'].sum()
             fig.add_trace(
                 go.Bar(x=forecast_summary.index, y=forecast_summary.values, name='Forecast'),
                 row=3, col=1
             )
-        
-        # 6. Data quality metrics
         data_quality = {
             'Total Records': len(self.data_with_features),
             'Cities': self.data_with_features['city'].nunique(),
             'SKUs': self.data_with_features['sku_id'].nunique(),
             'Date Range': f"{self.data_with_features['date'].min().strftime('%Y-%m-%d')} to {self.data_with_features['date'].max().strftime('%Y-%m-%d')}"
         }
-        
-        # Update layout
+
         fig.update_layout(
             height=1200,
             title_text="Retail Demand Forecasting Dashboard",
             title_x=0.5,
             showlegend=True
         )
-        
-        # Save interactive dashboard
         pyo.plot(fig, filename='dashboards/interactive_dashboard.html', auto_open=False)
         
         logger.info("Interactive dashboard created successfully")
     
     def create_forecast_visualizations(self):
-        """Create comprehensive forecast visualizations."""
         if self.forecasts is None:
             logger.warning("No forecasts available for visualization")
             return
         
         logger.info("Creating forecast visualizations...")
-        
-        # 1. Forecast Summary Plot
+
         fig, axes = plt.subplots(2, 2, figsize=(20, 15))
         fig.suptitle('Forecast Analysis for Jaipur_NewCity', fontsize=16, fontweight='bold')
         
@@ -380,8 +304,7 @@ class EnhancedForecastingPipeline:
         plt.tight_layout()
         plt.savefig('plots/forecast_analysis.png', dpi=300, bbox_inches='tight')
         plt.close()
-        
-        # 2. Interactive Forecast Dashboard
+
         self.create_forecast_dashboard()
         
         logger.info("Forecast visualizations created successfully")
@@ -389,14 +312,11 @@ class EnhancedForecastingPipeline:
     def create_forecast_dashboard(self):
         """Create interactive forecast dashboard."""
         logger.info("Creating forecast dashboard...")
-        
-        # Create forecast summary
+
         forecast_summary = self.forecasts.groupby(['sku_id', 'week_start'])['forecast_units'].sum().reset_index()
-        
-        # Create interactive plot
+
         fig = go.Figure()
-        
-        # Add traces for each SKU
+
         for sku in forecast_summary['sku_id'].unique():
             sku_data = forecast_summary[forecast_summary['sku_id'] == sku]
             fig.add_trace(go.Scatter(
@@ -407,8 +327,7 @@ class EnhancedForecastingPipeline:
                 line=dict(width=3),
                 marker=dict(size=8)
             ))
-        
-        # Update layout
+
         fig.update_layout(
             title='Interactive Forecast Dashboard - Jaipur_NewCity',
             xaxis_title='Week Start',
@@ -417,8 +336,7 @@ class EnhancedForecastingPipeline:
             template='plotly_white',
             height=600
         )
-        
-        # Add annotations
+
         total_forecast = self.forecasts['forecast_units'].sum()
         fig.add_annotation(
             x=0.5, y=0.95,
@@ -427,14 +345,12 @@ class EnhancedForecastingPipeline:
             showarrow=False,
             font=dict(size=14, color='darkblue')
         )
-        
-        # Save dashboard
+
         pyo.plot(fig, filename='dashboards/forecast_dashboard.html', auto_open=False)
         
         logger.info("Forecast dashboard created successfully")
     
     def generate_report(self):
-        """Generate comprehensive forecasting report."""
         logger.info("Generating comprehensive report...")
         
         if self.forecasts is None:
@@ -502,34 +418,18 @@ class EnhancedForecastingPipeline:
         """Run the complete enhanced forecasting pipeline."""
         logger.info("Starting Enhanced Cold-Start Demand Forecasting Pipeline")
         
-        try:
-            # Load and prepare data
-            self.load_and_prepare_data()
+        self.load_and_prepare_data()
+        
+        self.train_model()
+
+        self.generate_forecasts()
+        self.create_data_analysis_plots()
+        self.create_forecast_visualizations()
+        self.generate_report()
+        self.print_summary()
+        logger.info("Enhanced forecasting pipeline completed successfully!")
             
-            # Train model
-            self.train_model()
-            
-            # Generate forecasts
-            self.generate_forecasts()
-            
-            # Create visualizations
-            self.create_data_analysis_plots()
-            self.create_forecast_visualizations()
-            
-            # Generate report
-            self.generate_report()
-            
-            # Print summary
-            self.print_summary()
-            
-            logger.info("Enhanced forecasting pipeline completed successfully!")
-            
-        except Exception as e:
-            logger.error(f"Pipeline failed: {str(e)}")
-            raise
-    
     def print_summary(self):
-        """Print comprehensive summary."""
         if self.forecasts is None:
             return
         
@@ -569,7 +469,6 @@ class EnhancedForecastingPipeline:
 
 
 def main():
-    """Main execution function."""
     pipeline = EnhancedForecastingPipeline()
     pipeline.run_full_pipeline()
 
