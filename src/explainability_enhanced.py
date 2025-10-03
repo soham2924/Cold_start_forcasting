@@ -1,8 +1,3 @@
-"""
-Enhanced Explainability Module for Cold-Start Demand Forecasting
-Provides comprehensive model interpretability using SHAP, LIME, and feature importance analysis.
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,10 +18,8 @@ logger = logging.getLogger(__name__)
 
 
 class ExplainabilityAnalyzer:
-    """Comprehensive explainability analysis for demand forecasting models."""
     
     def __init__(self, model, X_train, y_train, feature_names=None):
-        """Initialize explainability analyzer."""
         self.model = model
         self.X_train = X_train
         self.y_train = y_train
@@ -35,39 +28,28 @@ class ExplainabilityAnalyzer:
         self.shap_values = None
         
     def create_shap_explainer(self):
-        """Create SHAP explainer for the model."""
         logger.info("Creating SHAP explainer...")
+        if hasattr(self.model, 'models'):
+            first_model = list(self.model.models.values())[0]
+            self.explainer = shap.TreeExplainer(first_model)
+        else:
+            self.explainer = shap.TreeExplainer(self.model)
+            
+        sample_size = min(100, len(self.X_train))
+        sample_indices = np.random.choice(len(self.X_train), sample_size, replace=False)
+        X_sample = self.X_train.iloc[sample_indices]
         
-        try:
-            if hasattr(self.model, 'models'):
-                first_model = list(self.model.models.values())[0]
-                self.explainer = shap.TreeExplainer(first_model)
-            else:
-                self.explainer = shap.TreeExplainer(self.model)
-            
-            sample_size = min(100, len(self.X_train))
-            sample_indices = np.random.choice(len(self.X_train), sample_size, replace=False)
-            X_sample = self.X_train.iloc[sample_indices]
-            
-            self.shap_values = self.explainer.shap_values(X_sample)
-            logger.info("SHAP explainer created successfully")
-            
-        except Exception as e:
-            logger.warning(f"SHAP explainer creation failed: {str(e)}")
-            self.explainer = None
-            self.shap_values = None
+        self.shap_values = self.explainer.shap_values(X_sample)
+        logger.info("SHAP explainer created successfully")
+
     
     def analyze_feature_importance(self):
-        """Analyze feature importance using multiple methods."""
         logger.info("Analyzing feature importance...")
         
         importance_results = {}
-        
-        # Model-based feature importance
         if hasattr(self.model, 'get_feature_importance'):
             importance_results['model_based'] = self.model.get_feature_importance()
-        
-        # SHAP importance
+
         if self.shap_values is not None:
             if isinstance(self.shap_values, list):
                 shap_importance = np.abs(self.shap_values[0]).mean(axis=0)
@@ -78,13 +60,11 @@ class ExplainabilityAnalyzer:
         return importance_results
     
     def create_feature_importance_plots(self, importance_results, top_n=20):
-        """Create comprehensive feature importance visualizations."""
         logger.info("Creating feature importance plots...")
         
         fig, axes = plt.subplots(2, 2, figsize=(20, 15))
         fig.suptitle('Feature Importance Analysis', fontsize=16, fontweight='bold')
-        
-        # Model-based importance
+
         if 'model_based' in importance_results:
             model_importance = importance_results['model_based']
             feature_importance_df = pd.DataFrame({
@@ -95,8 +75,7 @@ class ExplainabilityAnalyzer:
             axes[0, 0].barh(feature_importance_df['feature'], feature_importance_df['importance'])
             axes[0, 0].set_title('Model-Based Feature Importance')
             axes[0, 0].set_xlabel('Importance')
-        
-        # SHAP importance
+
         if 'shap' in importance_results:
             shap_importance = importance_results['shap']
             shap_df = pd.DataFrame({
@@ -115,7 +94,6 @@ class ExplainabilityAnalyzer:
         logger.info("Feature importance plots created successfully")
     
     def create_shap_plots(self, X_sample=None, max_display=20):
-        """Create comprehensive SHAP visualizations."""
         if self.shap_values is None:
             self.create_shap_explainer()
         
@@ -130,7 +108,6 @@ class ExplainabilityAnalyzer:
             sample_indices = np.random.choice(len(self.X_train), sample_size, replace=False)
             X_sample = self.X_train.iloc[sample_indices]
         
-        # Summary plot
         if isinstance(self.shap_values, list):
             shap_values_plot = self.shap_values[0]
         else:
@@ -147,17 +124,13 @@ class ExplainabilityAnalyzer:
         logger.info("SHAP visualizations created successfully")
     
     def generate_explainability_report(self):
-        """Generate comprehensive explainability report."""
-        logger.info("Generating explainability report...")
-        
-        # Analyze feature importance
+
         importance_results = self.analyze_feature_importance()
         
-        # Create visualizations
         self.create_feature_importance_plots(importance_results)
         self.create_shap_plots()
         
-        # Generate report
+
         report = f"""
 # Model Explainability Report
 
@@ -251,9 +224,7 @@ The model demonstrates high interpretability with clear feature importance ranki
 
 
 def main():
-    """Example usage of explainability analyzer."""
     logger.info("Explainability module loaded successfully")
-
 
 if __name__ == "__main__":
     main()
